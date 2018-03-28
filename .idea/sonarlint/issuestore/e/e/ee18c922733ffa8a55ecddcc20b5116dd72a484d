@@ -1,0 +1,7 @@
+
+ˆsquid:UselessImportCheck"ZRemove this unused import 'com.example.ali.androidmvp.data.network.services.MovieService'.(ÜÀãÜûÿÿÿÿ8ÞáÃš¦,
+vsquid:UselessImportCheck"HRemove this unused import 'com.example.ali.androidmvp.data.DataManager'.(†ßÎõúÿÿÿÿ8ƒ”Îš¦,
+\squid:UselessImportCheck".Remove this unused import 'android.view.View'.(Ø½­äþÿÿÿÿ8©«¦¼¥,
+msquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(û ë•
+]squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8¨™÷ú¥,
+jsquid:MaximumInheritanceDepth"<This class has 8 parents which is greater than 5 authorized.(¢ôÀ8å‹ÖÎ¥,

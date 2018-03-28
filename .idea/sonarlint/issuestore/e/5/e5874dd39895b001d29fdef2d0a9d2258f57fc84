@@ -1,0 +1,5 @@
+
+ˆsquid:UselessImportCheck"ZRemove this unused import 'com.example.ali.androidmvp.data.network.services.MovieService'.(ÜÀãÜûÿÿÿÿ8°Ìğ¥,
+msquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ş½¹
+nsquid:UselessImportCheck"@Remove this unused import 'android.support.annotation.Nullable'.(Ö‹øïüÿÿÿÿ8Ÿ«¶˜¦,
+[squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8ÅÉ‚ú¥,

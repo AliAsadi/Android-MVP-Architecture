@@ -1,0 +1,4 @@
+
+msquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(èùØÑ
+vsquid:UselessImportCheck"HRemove this unused import 'com.example.ali.androidmvp.data.DataManager'.(†ßÎõúÿÿÿÿ8¼üÂš¦,
+[squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8‘íØÚ¦,

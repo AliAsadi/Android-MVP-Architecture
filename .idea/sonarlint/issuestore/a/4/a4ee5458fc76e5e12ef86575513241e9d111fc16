@@ -1,0 +1,8 @@
+
+csquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÆC
+isquid:S00116"NRename this field "Log" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—ò‚ƒÿÿÿÿÿ
+osquid:S00116"TRename this field "ClassName" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍÅ¼ÿÿÿÿÿ
+lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©öùÙşÿÿÿÿ
+jsquid:S00116"ORename this field "Date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êÛÑ¬ùÿÿÿÿ
+dsquid:S00116"NRename this field "_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äî››
+isquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©öùÙşÿÿÿÿ
