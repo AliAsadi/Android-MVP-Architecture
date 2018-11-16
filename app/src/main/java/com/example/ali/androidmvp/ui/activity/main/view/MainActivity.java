@@ -1,20 +1,16 @@
-package com.example.ali.androidmvp.ui.activity.MainActivity.view;
+package com.example.ali.androidmvp.ui.activity.main.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.example.ali.androidmvp.R;
-import com.example.ali.androidmvp.data.DataManager;
 import com.example.ali.androidmvp.data.network.model.Movie;
 import com.example.ali.androidmvp.data.network.model.MovieResponse;
-import com.example.ali.androidmvp.data.network.services.MovieService;
-import com.example.ali.androidmvp.ui.activity.DetailsActivity.view.DetailsActivity;
-import com.example.ali.androidmvp.ui.activity.MainActivity.presenter.MainActivityPresenter;
-import com.example.ali.androidmvp.ui.activity.MainActivity.presenter.MovieAdapter;
+import com.example.ali.androidmvp.ui.activity.details.view.DetailsActivity;
+import com.example.ali.androidmvp.ui.activity.main.presenter.MainActivityPresenter;
+import com.example.ali.androidmvp.ui.activity.main.presenter.MovieAdapter;
 import com.example.ali.androidmvp.ui.activity.base.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;

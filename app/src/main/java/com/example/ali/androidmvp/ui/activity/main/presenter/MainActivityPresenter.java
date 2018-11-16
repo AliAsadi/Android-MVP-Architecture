@@ -1,11 +1,8 @@
-package com.example.ali.androidmvp.ui.activity.MainActivity.presenter;
+package com.example.ali.androidmvp.ui.activity.main.presenter;
 
-import android.util.Log;
-
-import com.example.ali.androidmvp.data.DataManager;
 import com.example.ali.androidmvp.data.network.model.MovieResponse;
 import com.example.ali.androidmvp.data.network.services.MovieService;
-import com.example.ali.androidmvp.ui.activity.MainActivity.view.MainActivityView;
+import com.example.ali.androidmvp.ui.activity.main.view.MainActivityView;
 import com.example.ali.androidmvp.ui.activity.base.BasePresenter;
 
 import java.lang.ref.WeakReference;

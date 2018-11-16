@@ -1,6 +1,5 @@
-package com.example.ali.androidmvp.ui.activity.DetailsActivity.view;
+package com.example.ali.androidmvp.ui.activity.details.view;
 
-import com.example.ali.androidmvp.data.network.model.MovieResponse;
 import com.example.ali.androidmvp.ui.activity.base.BaseView;
 
 /**

@@ -1,4 +1,4 @@
-package com.example.ali.androidmvp.ui.activity.DetailsActivity.view;
+package com.example.ali.androidmvp.ui.activity.details.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -6,7 +6,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.ali.androidmvp.R;
-import com.example.ali.androidmvp.ui.activity.DetailsActivity.presenter.DetailsActivityPresenter;
+import com.example.ali.androidmvp.ui.activity.details.presenter.DetailsActivityPresenter;
 import com.example.ali.androidmvp.ui.activity.base.BaseActivity;
 
 import butterknife.BindView;

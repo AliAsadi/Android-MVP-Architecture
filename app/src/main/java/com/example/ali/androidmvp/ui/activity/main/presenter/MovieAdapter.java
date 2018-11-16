@@ -1,4 +1,4 @@
-package com.example.ali.androidmvp.ui.activity.MainActivity.presenter;
+package com.example.ali.androidmvp.ui.activity.main.presenter;
 
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;

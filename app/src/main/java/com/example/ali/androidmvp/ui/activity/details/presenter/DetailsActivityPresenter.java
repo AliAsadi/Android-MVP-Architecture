@@ -1,12 +1,9 @@
-package com.example.ali.androidmvp.ui.activity.DetailsActivity.presenter;
+package com.example.ali.androidmvp.ui.activity.details.presenter;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.example.ali.androidmvp.data.network.model.Movie;
-import com.example.ali.androidmvp.data.network.services.MovieService;
-import com.example.ali.androidmvp.ui.activity.DetailsActivity.view.DetailsActivityView;
+import com.example.ali.androidmvp.ui.activity.details.view.DetailsActivityView;
 import com.example.ali.androidmvp.ui.activity.base.BasePresenter;
 
 
