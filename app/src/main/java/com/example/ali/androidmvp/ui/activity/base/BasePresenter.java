@@ -5,17 +5,16 @@ import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 /**
  * Created by Ali Esa Assadi on 26/03/2018.
  */
 public abstract class BasePresenter<View extends BaseView> {
 
-    protected View mView;
+    protected View view;
 
     protected BasePresenter(View view) {
-        mView = view;
+        this.view = view;
     }
 
     @CallSuper
@@ -38,7 +37,7 @@ public abstract class BasePresenter<View extends BaseView> {
     @CallSuper
     public void onDestroy() {
         //avoid memory leak
-        mView = null;
+        view = null;
     }
 
     @CallSuper

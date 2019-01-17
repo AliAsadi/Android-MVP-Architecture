@@ -26,7 +26,7 @@ public class DetailsActivity extends BaseActivity<DetailsActivityPresenter> impl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
-        mPresenter.getIntentExtras(getIntent());
+        presenter.getIntentExtras(getIntent());
     }
 
     @NonNull

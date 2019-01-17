@@ -28,7 +28,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
      **/
     public void getAllMovie() {
         Call<MovieResponse> userCall = mMovieService.getMovieApi().getAllMovie();
-        userCall.enqueue(new MovieCallListener(mView));
+        userCall.enqueue(new MovieCallListener(view));
     }
 
 

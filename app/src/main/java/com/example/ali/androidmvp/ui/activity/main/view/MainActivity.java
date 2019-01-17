@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.ali.androidmvp.R;
+import com.example.ali.androidmvp.data.DataManager;
 import com.example.ali.androidmvp.data.network.model.Movie;
 import com.example.ali.androidmvp.data.network.model.MovieResponse;
 import com.example.ali.androidmvp.ui.activity.details.view.DetailsActivity;
@@ -32,13 +33,13 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
         ButterKnife.bind(this);
         mMovieAdapter = new MovieAdapter(this);
         mRecyclerView.setAdapter(mMovieAdapter);
-        mPresenter.getAllMovie();
+        presenter.getAllMovie();
     }
 
     @NonNull
     @Override
     protected MainActivityPresenter createPresenter() {
-        return new MainActivityPresenter(this, mDataManager.getMovieService());
+        return new MainActivityPresenter(this, DataManager.getInstance().getMovieService());
     }
 
 

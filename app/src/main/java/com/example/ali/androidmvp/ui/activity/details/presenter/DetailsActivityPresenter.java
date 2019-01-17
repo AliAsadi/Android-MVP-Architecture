@@ -18,6 +18,6 @@ public class DetailsActivityPresenter extends BasePresenter<DetailsActivityView>
 
     public void getIntentExtras(Intent intent) {
         Movie movie = intent.getExtras().getParcelable("movie");
-        mView.updateActivityView(movie.getImage(), movie.getTitle(), movie.getDescription());
+        view.updateActivityView(movie.getImage(), movie.getTitle(), movie.getDescription());
     }
 }
