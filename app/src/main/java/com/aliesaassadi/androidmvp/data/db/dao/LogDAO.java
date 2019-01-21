@@ -1,7 +1,6 @@
 package com.aliesaassadi.androidmvp.data.db.dao;
 
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import com.aliesaassadi.androidmvp.data.db.entity.LogClass;
@@ -15,14 +14,8 @@ import java.util.List;
 public interface LogDAO {
 
     @Query("SELECT * FROM LogClass")
-    List<LogClass> getAll();
-
-    @Query("DELETE FROM LogClass")
-    void dropTable();
+    List<LogClass> getLogs();
 
     @Insert
-    void insertAll(LogClass... logs);
-
-    @Delete
-    void delete(LogClass log);
+    void insertLog(LogClass log);
 }
