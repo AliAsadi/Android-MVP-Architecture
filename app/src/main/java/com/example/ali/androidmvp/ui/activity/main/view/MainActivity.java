@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.example.ali.androidmvp.R;
 import com.example.ali.androidmvp.data.DataManager;
@@ -13,6 +14,9 @@ import com.example.ali.androidmvp.ui.activity.details.view.DetailsActivity;
 import com.example.ali.androidmvp.ui.activity.main.presenter.MainActivityPresenter;
 import com.example.ali.androidmvp.ui.activity.main.presenter.MovieAdapter;
 import com.example.ali.androidmvp.ui.activity.base.BaseActivity;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -44,8 +48,18 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
 
 
     @Override
-    public void onGetMovie(MovieResponse response) {
-        mMovieAdapter.setItems(response.getMovies());
+    public void showMovies(List<Movie> movies) {
+        mMovieAdapter.setItems(movies);
+    }
+
+    @Override
+    public void showErrorMessage() {
+        Toast.makeText(this, "Server error!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showThereIsNoMovies() {
+        Toast.makeText(this, "There is no movies!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

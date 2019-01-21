@@ -1,11 +1,13 @@
 package com.example.ali.androidmvp.ui.activity.main.presenter;
 
+import com.example.ali.androidmvp.data.network.model.Movie;
 import com.example.ali.androidmvp.data.network.model.MovieResponse;
 import com.example.ali.androidmvp.data.network.services.MovieService;
 import com.example.ali.androidmvp.ui.activity.main.view.MainActivityView;
 import com.example.ali.androidmvp.ui.activity.base.BasePresenter;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,7 +20,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
 
     private final MovieService mMovieService;
 
-    public MainActivityPresenter(MainActivityView view,MovieService movieService) {
+    public MainActivityPresenter(MainActivityView view, MovieService movieService) {
         super(view);
         mMovieService = movieService;
     }
@@ -45,14 +47,21 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
 
         @Override
         public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-            if (mView.get() != null) {
-                mView.get().onGetMovie(response.body());
+            if (mView.get() == null) return;
+
+            List<Movie> movies = response.body() != null ? response.body().getMovies() : null;
+            if (movies != null && !movies.isEmpty()) {
+                mView.get().showMovies(movies);
+            } else {
+                mView.get().showThereIsNoMovies();
             }
         }
 
         @Override
         public void onFailure(Call<MovieResponse> call, Throwable t) {
-            t.fillInStackTrace();
+            if (mView.get() == null) return;
+
+            mView.get().showErrorMessage();
         }
     }
 }

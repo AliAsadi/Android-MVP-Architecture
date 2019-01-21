@@ -25,6 +25,8 @@ public class Movie implements Parcelable{
     @SerializedName("title")
     private String title;
 
+    public Movie() {}
+
     protected Movie(Parcel in) {
         description = in.readString();
         image = in.readString();
