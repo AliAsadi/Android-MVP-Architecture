@@ -16,6 +16,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -23,9 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * Created by Ali Esa Assadi on 21/01/2019.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class MainPresenterTest {
@@ -48,28 +49,10 @@ public class MainPresenterTest {
     public void showMovies_WhenGetMoviesCallSuccess() {
 
         final Call<MovieResponse> movieCall = Mockito.mock(Call.class);
-
         Mockito.when(movieService.getMovieApi().getAllMovie()).thenReturn(movieCall);
 
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Callback<MovieResponse> callback = invocation.getArgument(0);
-
-                MovieResponse movieResponse = new MovieResponse();
-
-                List<Movie> movies = new ArrayList<>();
-                movies.add(new Movie());
-                movies.add(new Movie());
-                movieResponse.setMovies(movies);
-
-                Response<MovieResponse> response = Response.success(movieResponse);
-
-                callback.onResponse(movieCall, response);
-
-                return null;
-            }
-        }).when(movieCall).enqueue(Mockito.any(Callback.class));
+        List<Movie> movies = Arrays.asList(new Movie(), new Movie());
+        Mockito.doAnswer(new ResponseSuccess(movies)).when(movieCall).enqueue(Mockito.any(Callback.class));
 
         presenter.getAllMovie();
         Mockito.verify(view).showMovies((List<Movie>) Mockito.any());
@@ -79,21 +62,9 @@ public class MainPresenterTest {
     public void showNoMovies_WhenGetMoviesCallSuccessAndMovieListIsEmpty() {
 
         final Call<MovieResponse> movieCall = Mockito.mock(Call.class);
-
         Mockito.when(movieService.getMovieApi().getAllMovie()).thenReturn(movieCall);
 
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Callback<MovieResponse> callback = invocation.getArgument(0);
-
-                Response<MovieResponse> response = Response.success(new MovieResponse());
-
-                callback.onResponse(movieCall, response);
-
-                return null;
-            }
-        }).when(movieCall).enqueue(Mockito.any(Callback.class));
+        Mockito.doAnswer(new ResponseSuccess(Collections.EMPTY_LIST)).when(movieCall).enqueue(Mockito.any(Callback.class));
 
         presenter.getAllMovie();
         Mockito.verify(view).showThereIsNoMovies();
@@ -101,21 +72,47 @@ public class MainPresenterTest {
 
     @Test
     public void showErrorMessage_WhenGetMoviesCallFailed() {
-        final Call<MovieResponse> movieCall = Mockito.mock(Call.class);
 
+        final Call<MovieResponse> movieCall = Mockito.mock(Call.class);
         Mockito.when(movieService.getMovieApi().getAllMovie()).thenReturn(movieCall);
 
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Callback<MovieResponse> callback = invocation.getArgument(0);
-                callback.onFailure(movieCall, new Exception());
-                return null;
-            }
-        }).when(movieCall).enqueue(Mockito.any(Callback.class));
+        Mockito.doAnswer(new ResponseError()).when(movieCall).enqueue(Mockito.any(Callback.class));
 
         presenter.getAllMovie();
         Mockito.verify(view).showErrorMessage();
     }
+
+
+    private class ResponseSuccess implements Answer {
+
+        private final List<Movie> list;
+
+        ResponseSuccess(List<Movie> list) {
+            this.list = list;
+        }
+
+        @Override
+        public Object answer(InvocationOnMock invocation) throws Throwable {
+            Callback<MovieResponse> callback = invocation.getArgument(0);
+
+            MovieResponse movieResponse = new MovieResponse();
+            movieResponse.setMovies(list);
+
+            Response<MovieResponse> response = Response.success(movieResponse);
+            callback.onResponse(null, response);
+            return null;
+        }
+    }
+
+    private class ResponseError implements Answer {
+
+        @Override
+        public Object answer(InvocationOnMock invocation) throws Throwable {
+            Callback<MovieResponse> callback = invocation.getArgument(0);
+            callback.onFailure(null, new Exception());
+            return null;
+        }
+    }
+
 
 }
