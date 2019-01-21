@@ -29,11 +29,11 @@ public class DataManager {
     }
 
     public LogDatabase getLogDatabse() {
-        return LogDatabase.getInstance(App.getInstance());
+        return LogDatabase.getInstance();
     }
 
     public MovieService getMovieService() {
-        return new MovieService();
+        return MovieService.getInstance();
     }
 
 }

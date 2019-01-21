@@ -16,9 +16,18 @@ public class MovieService {
 
     private MovieApi mMovieApi;
 
-    public MovieService() {
+    private static MovieService singleton;
+
+    private MovieService() {
         Retrofit mRetrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(URL).build();
         mMovieApi = mRetrofit.create(MovieApi.class);
+    }
+
+    public static MovieService getInstance() {
+        if (singleton == null) {
+            singleton = new MovieService();
+        }
+        return singleton;
     }
 
     public MovieApi getMovieApi() {

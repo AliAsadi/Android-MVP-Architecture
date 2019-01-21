@@ -5,6 +5,8 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.support.annotation.WorkerThread;
+
+import com.aliesaassadi.androidmvp.App;
 import com.aliesaassadi.androidmvp.data.db.dao.LogDAO;
 import com.aliesaassadi.androidmvp.data.db.entity.LogClass;
 
@@ -20,17 +22,15 @@ public abstract class LogDatabase extends RoomDatabase {
     @WorkerThread
     public abstract LogDAO logDao();
 
-    private static LogDatabase initialize(Context context) {
-        sInstance = Room.databaseBuilder(context.getApplicationContext(), LogDatabase.class, "log-database").fallbackToDestructiveMigration().build();
-        return sInstance;
+    private static LogDatabase initialize() {
+       return Room.databaseBuilder(App.getInstance(), LogDatabase.class, "log-database").fallbackToDestructiveMigration().build();
     }
 
-    public static LogDatabase getInstance(Context context) {
+    public static LogDatabase getInstance() {
         if (sInstance == null) {
-            return initialize(context);
-        } else {
-            return sInstance;
+            sInstance = initialize();
         }
+        return sInstance;
     }
 
     public static void destroyInstance() {
