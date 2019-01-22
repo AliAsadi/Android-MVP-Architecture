@@ -1,8 +1,6 @@
 package com.aliesaassadi.androidmvp.data;
 
-import com.aliesaassadi.androidmvp.App;
-import com.aliesaassadi.androidmvp.data.db.database.LogDatabase;
-import com.aliesaassadi.androidmvp.data.db.database.LogRepository;
+import com.aliesaassadi.androidmvp.data.db.LogRepository;
 import com.aliesaassadi.androidmvp.data.network.services.MovieService;
 import com.aliesaassadi.androidmvp.data.prefs.Prefs;
 
