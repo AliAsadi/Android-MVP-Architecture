@@ -2,11 +2,12 @@
 
 ### A basic sample android application to understand MVP in a very simple way. Just clone, build, run and understand MVP.
 
-<img src=https://i.imgur.com/FPlzDXn.jpg >
+![](https://i.imgur.com/FPlzDXn.jpg)
+
 
 # Project Structure
 
-<img src=https://i.imgur.com/1qBiYxt.png >
+![](https://i.imgur.com/1qBiYxt.png)
 
 #### The app has following packages:
 1. **data**: It contains all the data accessing and manipulating components.
