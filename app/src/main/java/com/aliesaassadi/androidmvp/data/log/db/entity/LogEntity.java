@@ -9,7 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
  */
 
 @Entity
-public class LogData {
+public class LogEntity {
 
     @PrimaryKey(autoGenerate = true)
     private int _id;

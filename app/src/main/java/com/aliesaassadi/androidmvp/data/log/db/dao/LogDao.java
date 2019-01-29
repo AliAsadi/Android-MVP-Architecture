@@ -3,7 +3,7 @@ package com.aliesaassadi.androidmvp.data.log.db.dao;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
-import com.aliesaassadi.androidmvp.data.log.db.entity.LogData;
+import com.aliesaassadi.androidmvp.data.log.db.entity.LogEntity;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import java.util.List;
 @Dao
 public interface LogDao {
 
-    @Query("SELECT * FROM LogData")
-    List<LogData> getLogs();
+    @Query("SELECT * FROM LogEntity")
+    List<LogEntity> getLogs();
 
     @Insert
-    void insertLog(LogData log);
+    void insertLog(LogEntity log);
 }

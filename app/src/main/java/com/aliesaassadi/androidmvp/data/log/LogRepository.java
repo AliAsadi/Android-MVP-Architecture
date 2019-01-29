@@ -1,6 +1,6 @@
 package com.aliesaassadi.androidmvp.data.log;
 
-import com.aliesaassadi.androidmvp.data.log.db.entity.LogData;
+import com.aliesaassadi.androidmvp.data.log.db.entity.LogEntity;
 
 /**
  * Created by Ali Esa Assadi on 21/01/2019.
@@ -23,7 +23,7 @@ public class LogRepository implements LogDataSource{
     }
 
     @Override
-    public void saveLog(LogData log) {
+    public void saveLog(LogEntity log) {
         logLocalDataSource.saveLog(log);
     }
 }

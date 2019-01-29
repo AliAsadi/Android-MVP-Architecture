@@ -1,7 +1,7 @@
 package com.aliesaassadi.androidmvp.data.log;
 
-import com.aliesaassadi.androidmvp.data.log.db.entity.LogData;
+import com.aliesaassadi.androidmvp.data.log.db.entity.LogEntity;
 
 public interface LogDataSource {
-    void saveLog(LogData log);
+    void saveLog(LogEntity log);
 }
