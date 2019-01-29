@@ -1,12 +1,14 @@
 package com.aliesaassadi.androidmvp.data.log.db;
 
+import com.aliesaassadi.androidmvp.data.log.LogDataSource;
 import com.aliesaassadi.androidmvp.data.log.db.dao.LogDao;
 import com.aliesaassadi.androidmvp.data.log.db.entity.LogEntity;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class LogLocalDataSource {
+public class LogLocalDataSource implements LogDataSource {
+
     private Executor executor;
     private LogDao logDao;
 
@@ -24,11 +26,13 @@ public class LogLocalDataSource {
         return instance;
     }
 
+
+    @Override
     public void saveLog(final LogEntity log) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                logDao.insertLog(log);
+                logDao.saveLog(log);
             }
         };
         executor.execute(runnable);

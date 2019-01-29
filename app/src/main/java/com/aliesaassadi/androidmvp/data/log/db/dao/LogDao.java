@@ -14,9 +14,9 @@ import java.util.List;
 @Dao
 public interface LogDao {
 
-    @Query("SELECT * FROM LogEntity")
+    @Query("SELECT * FROM logs")
     List<LogEntity> getLogs();
 
     @Insert
-    void insertLog(LogEntity log);
+    void saveLog(LogEntity log);
 }

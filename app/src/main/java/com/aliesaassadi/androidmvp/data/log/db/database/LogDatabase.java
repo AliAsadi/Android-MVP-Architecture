@@ -1,8 +1,10 @@
 package com.aliesaassadi.androidmvp.data.log.db.database;
 
 import android.arch.persistence.room.Database;
+import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 
+import com.aliesaassadi.androidmvp.App;
 import com.aliesaassadi.androidmvp.data.log.db.dao.LogDao;
 import com.aliesaassadi.androidmvp.data.log.db.entity.LogEntity;
 
@@ -12,5 +14,15 @@ import com.aliesaassadi.androidmvp.data.log.db.entity.LogEntity;
 
 @Database(entities = {LogEntity.class}, version = 2 , exportSchema = false)
 public abstract class LogDatabase extends RoomDatabase {
+
     public abstract LogDao logDao();
+
+    private static LogDatabase sInstance;
+
+    public static LogDatabase getInstance() {
+        if (sInstance == null) {
+            sInstance = Room.databaseBuilder(App.getInstance(), LogDatabase.class, "Log.db").build();
+        }
+        return sInstance;
+    }
 }
