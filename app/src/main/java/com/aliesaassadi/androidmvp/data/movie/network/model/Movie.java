@@ -1,4 +1,4 @@
-package com.aliesaassadi.androidmvp.data.network.model;
+package com.aliesaassadi.androidmvp.data.movie.network.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

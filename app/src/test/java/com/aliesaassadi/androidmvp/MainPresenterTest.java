@@ -1,8 +1,8 @@
 package com.aliesaassadi.androidmvp;
 
-import com.aliesaassadi.androidmvp.data.network.model.Movie;
-import com.aliesaassadi.androidmvp.data.network.model.MovieResponse;
-import com.aliesaassadi.androidmvp.data.network.services.MovieService;
+import com.aliesaassadi.androidmvp.data.movie.network.model.Movie;
+import com.aliesaassadi.androidmvp.data.movie.network.model.MovieResponse;
+import com.aliesaassadi.androidmvp.data.movie.network.services.MovieService;
 import com.aliesaassadi.androidmvp.ui.activity.main.MainPresenter;
 import com.aliesaassadi.androidmvp.ui.activity.main.MainView;
 

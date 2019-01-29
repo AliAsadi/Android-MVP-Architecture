@@ -2,7 +2,7 @@ package com.aliesaassadi.androidmvp.ui.activity.details;
 
 import android.content.Intent;
 
-import com.aliesaassadi.androidmvp.data.network.model.Movie;
+import com.aliesaassadi.androidmvp.data.movie.network.model.Movie;
 import com.aliesaassadi.androidmvp.ui.activity.base.BasePresenter;
 
 

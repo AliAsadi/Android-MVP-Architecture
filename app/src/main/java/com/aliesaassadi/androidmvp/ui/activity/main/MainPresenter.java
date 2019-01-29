@@ -1,66 +1,61 @@
 package com.aliesaassadi.androidmvp.ui.activity.main;
 
-import com.aliesaassadi.androidmvp.data.network.model.Movie;
-import com.aliesaassadi.androidmvp.data.network.model.MovieResponse;
-import com.aliesaassadi.androidmvp.data.network.services.MovieService;
+import com.aliesaassadi.androidmvp.data.movie.MovieDataSource;
+import com.aliesaassadi.androidmvp.data.movie.MoviesRepository;
+import com.aliesaassadi.androidmvp.data.movie.network.model.Movie;
 import com.aliesaassadi.androidmvp.ui.activity.base.BasePresenter;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by Ali Esa Assadi on 12/03/2018.
  */
 public class MainPresenter extends BasePresenter<MainView> {
 
-    private final MovieService mMovieService;
+    private final MoviesRepository movieRepository;
 
-    public MainPresenter(MainView view, MovieService movieService) {
+    public MainPresenter(MainView view, MoviesRepository movieRepository) {
         super(view);
-        mMovieService = movieService;
+        this.movieRepository = movieRepository;
     }
 
     /**
      * Network
      **/
     public void getAllMovie() {
-        Call<MovieResponse> userCall = mMovieService.getMovieApi().getAllMovie();
-        userCall.enqueue(new MovieCallListener(view));
+        movieRepository.getMovies(new MovieCallListener(view));
     }
-
 
     /**
      * Callback
      **/
-    private static class MovieCallListener implements Callback<MovieResponse> {
+    private static class MovieCallListener implements MovieDataSource.LoadMoviesCallback {
 
-        private WeakReference<MainView> mView;
+        private WeakReference<MainView> view;
 
         private MovieCallListener(MainView view) {
-            mView = new WeakReference<>(view);
+            this.view = new WeakReference<>(view);
         }
 
         @Override
-        public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-            if (mView.get() == null) return;
-
-            List<Movie> movies = response.body() != null ? response.body().getMovies() : null;
-            if (movies != null && !movies.isEmpty()) {
-                mView.get().showMovies(movies);
-            } else {
-                mView.get().showThereIsNoMovies();
-            }
+        public void onMoviesLoaded(List<Movie> movies) {
+            if (view.get() == null) return;
+            view.get().showMovies(movies);
         }
 
         @Override
-        public void onFailure(Call<MovieResponse> call, Throwable t) {
-            if (mView.get() == null) return;
+        public void onDataNotAvailable() {
+            if (view.get() == null) return;
+            view.get().showThereIsNoMovies();
 
-            mView.get().showErrorMessage();
+        }
+
+        @Override
+        public void onError() {
+            if (view.get() == null) return;
+            view.get().showErrorMessage();
+
         }
     }
 }

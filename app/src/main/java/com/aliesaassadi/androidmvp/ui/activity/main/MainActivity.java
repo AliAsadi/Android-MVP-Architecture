@@ -8,9 +8,12 @@ import android.widget.Toast;
 
 import com.aliesaassadi.androidmvp.R;
 import com.aliesaassadi.androidmvp.data.DataManager;
-import com.aliesaassadi.androidmvp.data.network.model.Movie;
-import com.aliesaassadi.androidmvp.ui.activity.details.DetailsActivity;
+import com.aliesaassadi.androidmvp.data.movie.MoviesRepository;
+import com.aliesaassadi.androidmvp.data.movie.network.MovieRemoteDataSource;
+import com.aliesaassadi.androidmvp.data.movie.network.model.Movie;
+import com.aliesaassadi.androidmvp.data.movie.network.services.MovieApi;
 import com.aliesaassadi.androidmvp.ui.activity.base.BaseActivity;
+import com.aliesaassadi.androidmvp.ui.activity.details.DetailsActivity;
 
 import java.util.List;
 
@@ -23,30 +26,36 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView, MovieAdapter.OnMovieAdapter {
 
-    MovieAdapter mMovieAdapter;
+    MovieAdapter movieAdapter;
 
-    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
+    @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mMovieAdapter = new MovieAdapter(this);
-        mRecyclerView.setAdapter(mMovieAdapter);
+        movieAdapter = new MovieAdapter(this);
+        recyclerView.setAdapter(movieAdapter);
         presenter.getAllMovie();
     }
 
     @NonNull
     @Override
     protected MainPresenter createPresenter() {
-        return new MainPresenter(this, DataManager.getInstance().getMovieService());
+
+        MovieApi movieApi = DataManager.getInstance().getMovieApi();
+
+        MoviesRepository movieRepository = DataManager.getInstance()
+                .getMovieRepository(MovieRemoteDataSource.getInstance(movieApi));
+
+        return new MainPresenter(this, movieRepository);
     }
 
 
     @Override
     public void showMovies(List<Movie> movies) {
-        mMovieAdapter.setItems(movies);
+        movieAdapter.setItems(movies);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.aliesaassadi.androidmvp.data.db.entity;
+package com.aliesaassadi.androidmvp.data.log.db.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -9,31 +9,31 @@ import android.arch.persistence.room.PrimaryKey;
  */
 
 @Entity
-public class LogClass {
+public class LogData {
 
     @PrimaryKey(autoGenerate = true)
     private int _id;
 
     @ColumnInfo(name = "Log")
-    private String Log;
+    private String log;
 
     @ColumnInfo(name = "Class")
-    private String ClassName;
+    private String className;
 
     @ColumnInfo(name = "Date")
-    private String Date;
+    private String date;
 
     public String getClassName() {
-        return ClassName;
+        return className;
     }
     public void setClassName(String className) {
-        ClassName = className;
+        this.className = className;
     }
     public String getDate() {
-        return Date;
+        return date;
     }
     public void setDate(String date) {
-        Date = date;
+        this.date = date;
     }
     public int get_id() {
         return _id;
@@ -42,9 +42,9 @@ public class LogClass {
         this._id = _id;
     }
     public String getLog() {
-        return Log;
+        return log;
     }
     public void setLog(String log) {
-        Log = log;
+        this.log = log;
     }
 }
