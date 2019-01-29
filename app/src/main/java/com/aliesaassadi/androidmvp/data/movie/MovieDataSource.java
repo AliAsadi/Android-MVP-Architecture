@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface MovieDataSource {
 
+
     interface LoadMoviesCallback {
         void onMoviesLoaded(List<Movie> movies);
         void onDataNotAvailable();
@@ -11,4 +12,5 @@ public interface MovieDataSource {
     }
 
     void getMovies(LoadMoviesCallback callback);
+    void saveMovies(List<Movie> movies);
 }

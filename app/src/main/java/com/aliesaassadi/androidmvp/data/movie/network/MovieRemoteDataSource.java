@@ -47,4 +47,9 @@ public class MovieRemoteDataSource implements MovieDataSource {
             }
         });
     }
+
+    @Override
+    public void saveMovies(List<Movie> movies) {
+        //doNothing
+    }
 }

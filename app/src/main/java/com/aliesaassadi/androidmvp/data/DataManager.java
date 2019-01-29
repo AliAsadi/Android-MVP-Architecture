@@ -41,8 +41,9 @@ public class DataManager {
         return MovieService.getInstance().getMovieApi();
     }
 
-    public MoviesRepository getMovieRepository(MovieDataSource movieRemoteDataSource) {
-        return MoviesRepository.getInstance(movieRemoteDataSource);
+    public MoviesRepository getMovieRepository(MovieDataSource movieRemote,
+                                               MovieDataSource movieLocal) {
+        return MoviesRepository.getInstance(movieRemote,movieLocal);
     }
 
 }

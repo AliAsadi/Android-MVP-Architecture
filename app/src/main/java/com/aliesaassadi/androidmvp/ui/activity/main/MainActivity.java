@@ -9,6 +9,9 @@ import android.widget.Toast;
 import com.aliesaassadi.androidmvp.R;
 import com.aliesaassadi.androidmvp.data.DataManager;
 import com.aliesaassadi.androidmvp.data.movie.MoviesRepository;
+import com.aliesaassadi.androidmvp.data.movie.db.MovieLocalDataSource;
+import com.aliesaassadi.androidmvp.data.movie.db.dao.MovieDao;
+import com.aliesaassadi.androidmvp.data.movie.db.database.MovieDatabase;
 import com.aliesaassadi.androidmvp.data.movie.network.MovieRemoteDataSource;
 import com.aliesaassadi.androidmvp.data.movie.Movie;
 import com.aliesaassadi.androidmvp.data.movie.network.services.MovieApi;
@@ -28,7 +31,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
 
     MovieAdapter movieAdapter;
 
-    @BindView(R.id.recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +49,13 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     protected MainPresenter createPresenter() {
 
         MovieApi movieApi = DataManager.getInstance().getMovieApi();
+        MovieRemoteDataSource remoteDataSource = MovieRemoteDataSource.getInstance(movieApi);
+
+        MovieDao movieDao = MovieDatabase.getInstance().movieDao();
+        MovieLocalDataSource localDataSource = MovieLocalDataSource.getInstance(movieDao);
 
         MoviesRepository movieRepository = DataManager.getInstance()
-                .getMovieRepository(MovieRemoteDataSource.getInstance(movieApi));
+                .getMovieRepository(remoteDataSource, localDataSource);
 
         return new MainPresenter(this, movieRepository);
     }
