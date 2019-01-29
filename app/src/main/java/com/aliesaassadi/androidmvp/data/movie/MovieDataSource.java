@@ -1,6 +1,5 @@
 package com.aliesaassadi.androidmvp.data.movie;
 
-import com.aliesaassadi.androidmvp.data.movie.network.model.Movie;
 import java.util.List;
 
 public interface MovieDataSource {

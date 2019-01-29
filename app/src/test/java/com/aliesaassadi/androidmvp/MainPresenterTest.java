@@ -2,7 +2,7 @@ package com.aliesaassadi.androidmvp;
 
 import com.aliesaassadi.androidmvp.data.movie.MovieDataSource;
 import com.aliesaassadi.androidmvp.data.movie.MoviesRepository;
-import com.aliesaassadi.androidmvp.data.movie.network.model.Movie;
+import com.aliesaassadi.androidmvp.data.movie.Movie;
 import com.aliesaassadi.androidmvp.ui.activity.main.MainPresenter;
 import com.aliesaassadi.androidmvp.ui.activity.main.MainView;
 

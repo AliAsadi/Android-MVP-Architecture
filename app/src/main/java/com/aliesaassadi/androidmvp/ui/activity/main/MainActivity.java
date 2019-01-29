@@ -10,7 +10,7 @@ import com.aliesaassadi.androidmvp.R;
 import com.aliesaassadi.androidmvp.data.DataManager;
 import com.aliesaassadi.androidmvp.data.movie.MoviesRepository;
 import com.aliesaassadi.androidmvp.data.movie.network.MovieRemoteDataSource;
-import com.aliesaassadi.androidmvp.data.movie.network.model.Movie;
+import com.aliesaassadi.androidmvp.data.movie.Movie;
 import com.aliesaassadi.androidmvp.data.movie.network.services.MovieApi;
 import com.aliesaassadi.androidmvp.ui.activity.base.BaseActivity;
 import com.aliesaassadi.androidmvp.ui.activity.details.DetailsActivity;

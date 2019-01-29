@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.aliesaassadi.androidmvp.R;
-import com.aliesaassadi.androidmvp.data.movie.network.model.Movie;
+import com.aliesaassadi.androidmvp.data.movie.Movie;
 import java.util.ArrayList;
 import java.util.List;
 

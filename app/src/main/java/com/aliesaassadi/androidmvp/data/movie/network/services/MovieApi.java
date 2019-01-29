@@ -7,5 +7,5 @@ import retrofit2.http.GET;
 
 public interface MovieApi {
     @GET("movies/")
-    Call<MovieResponse> getAllMovie();
+    Call<MovieResponse> getMovies();
 }

@@ -1,7 +1,7 @@
 package com.aliesaassadi.androidmvp.data.movie.network;
 
 import com.aliesaassadi.androidmvp.data.movie.MovieDataSource;
-import com.aliesaassadi.androidmvp.data.movie.network.model.Movie;
+import com.aliesaassadi.androidmvp.data.movie.Movie;
 import com.aliesaassadi.androidmvp.data.movie.network.model.MovieResponse;
 import com.aliesaassadi.androidmvp.data.movie.network.services.MovieApi;
 
@@ -30,7 +30,7 @@ public class MovieRemoteDataSource implements MovieDataSource {
 
     @Override
     public void getMovies(final LoadMoviesCallback callback) {
-        movieApi.getAllMovie().enqueue(new Callback<MovieResponse>() {
+        movieApi.getMovies().enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 List<Movie> movies = response.body() != null ? response.body().getMovies() : null;
