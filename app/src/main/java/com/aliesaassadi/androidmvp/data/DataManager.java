@@ -2,7 +2,8 @@ package com.aliesaassadi.androidmvp.data;
 
 import com.aliesaassadi.androidmvp.data.db.LogRepository;
 import com.aliesaassadi.androidmvp.data.network.services.MovieService;
-import com.aliesaassadi.androidmvp.data.prefs.Prefs;
+import com.preference.PowerPreference;
+import com.preference.Preference;
 
 /**
  * Created by Ali Esa Assadi on 26/03/2018.
@@ -23,9 +24,11 @@ public class DataManager {
         return sInstance;
     }
 
-    public Prefs getPrefs() {
-        return Prefs.getInstance();
+    public Preference getDefaultPreference() {
+        return PowerPreference.getDefaultFile();
     }
+
+    public Preference getUserPreference() { return PowerPreference.getFileByName("UserPreference"); }
 
     public LogRepository getLogRepository() {
         return LogRepository.getInstance();
