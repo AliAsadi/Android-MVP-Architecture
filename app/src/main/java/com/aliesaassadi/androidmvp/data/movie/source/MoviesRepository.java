@@ -34,13 +34,14 @@ public class MoviesRepository implements MovieDataSource {
                                                MovieLocalDataSource movieLocalDataSource,
                                                MovieCacheDataSource movieCacheDataSource) {
         if (instance == null) {
-            instance = new MoviesRepository(movieRemoteDataSource,movieLocalDataSource,movieCacheDataSource);
+            instance = new MoviesRepository(movieRemoteDataSource, movieLocalDataSource, movieCacheDataSource);
         }
         return instance;
     }
 
     @Override
     public void getMovies(final LoadMoviesCallback callback) {
+        if (callback == null) return;
 
         movieCacheDataSource.getMovies(new LoadMoviesCallback() {
             @Override
