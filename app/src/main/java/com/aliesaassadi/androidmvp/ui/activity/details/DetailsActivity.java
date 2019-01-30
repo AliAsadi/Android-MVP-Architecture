@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.aliesaassadi.androidmvp.R;
 import com.aliesaassadi.androidmvp.ui.activity.base.BaseActivity;
 import com.squareup.picasso.Picasso;
@@ -25,7 +27,7 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
-        presenter.getIntentExtras(getIntent());
+        presenter.getMovieData(getIntent());
     }
 
     @NonNull
@@ -35,9 +37,19 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
     }
 
     @Override
-    public void updateActivityView(String imageUrl, String title, String description) {
+    public void showMovieDetails(String imageUrl, String title, String description) {
         mTitle.setText(title);
         mDesc.setText(description);
         Picasso.get().load(imageUrl).into(mImage);
+    }
+
+    @Override
+    public void showDataUnavailableMessage() {
+        Toast.makeText(this, "Data Unavailable", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showErrorMessage() {
+        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
     }
 }
