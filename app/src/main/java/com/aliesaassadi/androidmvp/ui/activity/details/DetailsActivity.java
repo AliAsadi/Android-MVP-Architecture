@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
 import com.aliesaassadi.androidmvp.R;
 import com.aliesaassadi.androidmvp.ui.activity.base.BaseActivity;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +38,6 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
     public void updateActivityView(String imageUrl, String title, String description) {
         mTitle.setText(title);
         mDesc.setText(description);
-        Glide.with(getApplicationContext()).load(imageUrl).into(mImage);
+        Picasso.get().load(imageUrl).into(mImage);
     }
 }
