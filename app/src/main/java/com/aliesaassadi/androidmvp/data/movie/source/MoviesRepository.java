@@ -1,13 +1,10 @@
 package com.aliesaassadi.androidmvp.data.movie.source;
 
-import android.util.SparseArray;
-
 import com.aliesaassadi.androidmvp.data.movie.Movie;
 import com.aliesaassadi.androidmvp.data.movie.source.local.MovieCacheDataSource;
 import com.aliesaassadi.androidmvp.data.movie.source.local.MovieLocalDataSource;
 import com.aliesaassadi.androidmvp.data.movie.source.remote.MovieRemoteDataSource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,26 +12,26 @@ import java.util.List;
  */
 public class MoviesRepository implements MovieDataSource {
 
-    private final MovieDataSource movieRemoteDataSource;
-    private final MovieDataSource movieLocalDataSource;
-    private final MovieDataSource movieCacheDataSource;
+    private final MovieDataSource movieRemote;
+    private final MovieDataSource movieLocal;
+    private final MovieDataSource movieCache;
 
     private static MoviesRepository instance;
 
-    private MoviesRepository(MovieRemoteDataSource movieRemoteDataSource,
-                             MovieLocalDataSource movieLocalDataSource,
-                             MovieCacheDataSource movieCacheDataSource) {
+    private MoviesRepository(MovieRemoteDataSource movieRemote,
+                             MovieLocalDataSource movieLocal,
+                             MovieCacheDataSource movieCache) {
 
-        this.movieRemoteDataSource = movieRemoteDataSource;
-        this.movieLocalDataSource = movieLocalDataSource;
-        this.movieCacheDataSource = movieCacheDataSource;
+        this.movieRemote = movieRemote;
+        this.movieLocal = movieLocal;
+        this.movieCache = movieCache;
     }
 
-    public static MoviesRepository getInstance(MovieRemoteDataSource movieRemoteDataSource,
-                                               MovieLocalDataSource movieLocalDataSource,
-                                               MovieCacheDataSource movieCacheDataSource) {
+    public static MoviesRepository getInstance(MovieRemoteDataSource movieRemote,
+                                               MovieLocalDataSource movieLocal,
+                                               MovieCacheDataSource movieCache) {
         if (instance == null) {
-            instance = new MoviesRepository(movieRemoteDataSource, movieLocalDataSource, movieCacheDataSource);
+            instance = new MoviesRepository(movieRemote, movieLocal, movieCache);
         }
         return instance;
     }
@@ -43,7 +40,7 @@ public class MoviesRepository implements MovieDataSource {
     public void getMovies(final LoadMoviesCallback callback) {
         if (callback == null) return;
 
-        movieCacheDataSource.getMovies(new LoadMoviesCallback() {
+        movieCache.getMovies(new LoadMoviesCallback() {
             @Override
             public void onMoviesLoaded(List<Movie> movies) {
                 callback.onMoviesLoaded(movies);
@@ -64,11 +61,11 @@ public class MoviesRepository implements MovieDataSource {
 
     @Override
     public void saveMovies(List<Movie> movies) {
-        movieLocalDataSource.saveMovies(movies);
+        movieLocal.saveMovies(movies);
     }
 
     private void getMoviesFromLocalDataSource(final LoadMoviesCallback callback) {
-        movieLocalDataSource.getMovies(new LoadMoviesCallback() {
+        movieLocal.getMovies(new LoadMoviesCallback() {
             @Override
             public void onMoviesLoaded(List<Movie> movies) {
                 callback.onMoviesLoaded(movies);
@@ -88,7 +85,7 @@ public class MoviesRepository implements MovieDataSource {
     }
 
     private void getMoviesFromRemoteDataSource(final LoadMoviesCallback callback) {
-        movieRemoteDataSource.getMovies(new LoadMoviesCallback() {
+        movieRemote.getMovies(new LoadMoviesCallback() {
             @Override
             public void onMoviesLoaded(List<Movie> movies) {
                 callback.onMoviesLoaded(movies);
@@ -109,7 +106,7 @@ public class MoviesRepository implements MovieDataSource {
     }
 
     private void refreshCache(List<Movie> movies) {
-        movieCacheDataSource.saveMovies(movies);
+        movieCache.saveMovies(movies);
     }
 
 
