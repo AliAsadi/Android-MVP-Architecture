@@ -46,8 +46,8 @@ public class DataManager {
 
     public MoviesRepository getMovieRepository(MovieRemoteDataSource movieRemote,
                                                MovieLocalDataSource movieLocal,
-                                               MovieCacheDataSource cacheDataSource) {
-        return MoviesRepository.getInstance(movieRemote,movieLocal,cacheDataSource);
+                                               MovieCacheDataSource movieCache) {
+        return MoviesRepository.getInstance(movieRemote,movieLocal,movieCache);
     }
 
 }
