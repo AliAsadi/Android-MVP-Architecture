@@ -8,13 +8,13 @@ import android.widget.Toast;
 
 import com.aliesaassadi.androidmvp.R;
 import com.aliesaassadi.androidmvp.data.DataManager;
-import com.aliesaassadi.androidmvp.data.movie.MoviesRepository;
-import com.aliesaassadi.androidmvp.data.movie.local.MovieLocalDataSource;
-import com.aliesaassadi.androidmvp.data.movie.local.dao.MovieDao;
-import com.aliesaassadi.androidmvp.data.movie.local.database.MovieDatabase;
-import com.aliesaassadi.androidmvp.data.movie.remote.MovieRemoteDataSource;
+import com.aliesaassadi.androidmvp.data.movie.source.MoviesRepository;
+import com.aliesaassadi.androidmvp.data.movie.source.local.MovieLocalDataSource;
+import com.aliesaassadi.androidmvp.data.movie.source.local.dao.MovieDao;
+import com.aliesaassadi.androidmvp.data.movie.source.local.database.MovieDatabase;
+import com.aliesaassadi.androidmvp.data.movie.source.remote.MovieRemoteDataSource;
 import com.aliesaassadi.androidmvp.data.movie.Movie;
-import com.aliesaassadi.androidmvp.data.movie.remote.services.MovieApi;
+import com.aliesaassadi.androidmvp.data.movie.source.remote.services.MovieApi;
 import com.aliesaassadi.androidmvp.ui.activity.base.BaseActivity;
 import com.aliesaassadi.androidmvp.ui.activity.details.DetailsActivity;
 

@@ -1,11 +1,11 @@
 package com.aliesaassadi.androidmvp.data;
 
-import com.aliesaassadi.androidmvp.data.log.LogDataSource;
-import com.aliesaassadi.androidmvp.data.log.LogRepository;
-import com.aliesaassadi.androidmvp.data.movie.MovieDataSource;
-import com.aliesaassadi.androidmvp.data.movie.MoviesRepository;
-import com.aliesaassadi.androidmvp.data.movie.remote.services.MovieApi;
-import com.aliesaassadi.androidmvp.data.movie.remote.services.MovieService;
+import com.aliesaassadi.androidmvp.data.log.source.LogDataSource;
+import com.aliesaassadi.androidmvp.data.log.source.LogRepository;
+import com.aliesaassadi.androidmvp.data.movie.source.MovieDataSource;
+import com.aliesaassadi.androidmvp.data.movie.source.MoviesRepository;
+import com.aliesaassadi.androidmvp.data.movie.source.remote.services.MovieApi;
+import com.aliesaassadi.androidmvp.data.movie.source.remote.services.MovieService;
 import com.preference.PowerPreference;
 import com.preference.Preference;
 
