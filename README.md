@@ -19,13 +19,14 @@
   avoiding Activity leaks by releasing the view when it's no longer needed 
   ,BasePresenter repsonsable to destroy the view onActivityDestory().
   
-#### Library
-* RoomDatabase
-* ButterKnife
-* Retrofit
-* Gson
-* Glide
-* Mockito
+#### Used libraries:
+1. [RoomDatabase](https://developer.android.com/topic/libraries/architecture/room)
+2. [ButterKnife](http://jakewharton.github.io/butterknife/)
+3. [Retrofit](https://github.com/square/retrofit)
+4. [PowerPreference](https://github.com/AliEsaAssadi/Android-Power-Preference)
+5. [Gson](https://github.com/google/gson)
+6. [Picasso](https://github.com/square/picasso)
+7. [Mockito](https://github.com/mockito/mockito)
 
 --------------------------------------------------------------------------------------------
 
