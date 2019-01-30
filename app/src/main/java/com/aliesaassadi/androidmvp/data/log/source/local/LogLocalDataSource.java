@@ -19,7 +19,7 @@ public class LogLocalDataSource implements LogDataSource {
         this.logDao = logDao;
     }
 
-    public static LogLocalDataSource getInstance(LogDao logDao) {
+    public static synchronized LogLocalDataSource getInstance(LogDao logDao) {
         if (instance == null) {
             instance = new LogLocalDataSource(Executors.newSingleThreadExecutor(), logDao);
         }
