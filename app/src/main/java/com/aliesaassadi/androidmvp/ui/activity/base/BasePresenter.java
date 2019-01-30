@@ -17,10 +17,8 @@ public abstract class BasePresenter<View extends BaseView> {
         this.view = view;
     }
 
-    @CallSuper
-    void onDestroy() {
+    void destroyView() {
         //avoid memory leak
         view = null;
     }
-
 }
