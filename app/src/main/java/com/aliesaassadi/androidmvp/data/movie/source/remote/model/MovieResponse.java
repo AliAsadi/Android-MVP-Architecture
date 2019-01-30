@@ -1,5 +1,6 @@
-package com.aliesaassadi.androidmvp.data.network.model;
+package com.aliesaassadi.androidmvp.data.movie.source.remote.model;
 
+import com.aliesaassadi.androidmvp.data.movie.Movie;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

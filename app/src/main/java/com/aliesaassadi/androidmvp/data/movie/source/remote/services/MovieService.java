@@ -1,11 +1,6 @@
-package com.aliesaassadi.androidmvp.data.network.services;
-
-import com.aliesaassadi.androidmvp.data.network.model.MovieResponse;
-
-import retrofit2.Call;
+package com.aliesaassadi.androidmvp.data.movie.source.remote.services;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
 
 /**
  * Created by Ali Esa Assadi on 26/03/2018.
@@ -34,10 +29,4 @@ public class MovieService {
         return mMovieApi;
     }
 
-    public interface MovieApi {
-        @GET("movies/") Call<MovieResponse> getAllMovie();
-    }
-
 }
-
-

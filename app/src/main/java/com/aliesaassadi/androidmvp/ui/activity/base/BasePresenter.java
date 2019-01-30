@@ -17,34 +17,8 @@ public abstract class BasePresenter<View extends BaseView> {
         this.view = view;
     }
 
-    @CallSuper
-    public void onCreate(@Nullable final Bundle savedInstanceState) {
-    }
-
-
-    @CallSuper
-    public void onResume() {
-    }
-
-    @CallSuper
-    public void onPause() {
-    }
-
-    @CallSuper
-    public void onSaveInstanceState(@NonNull final Bundle outState) {
-    }
-
-    @CallSuper
-    public void onDestroy() {
+    void destroyView() {
         //avoid memory leak
         view = null;
     }
-
-    @CallSuper
-    public void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent data) {
-    }
-
-    @CallSuper
-    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions,
-                                           @NonNull final int[] grantResults) {}
 }

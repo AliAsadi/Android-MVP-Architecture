@@ -8,9 +8,16 @@ import android.widget.Toast;
 
 import com.aliesaassadi.androidmvp.R;
 import com.aliesaassadi.androidmvp.data.DataManager;
-import com.aliesaassadi.androidmvp.data.network.model.Movie;
-import com.aliesaassadi.androidmvp.ui.activity.details.DetailsActivity;
+import com.aliesaassadi.androidmvp.data.movie.source.MoviesRepository;
+import com.aliesaassadi.androidmvp.data.movie.source.local.MovieCacheDataSource;
+import com.aliesaassadi.androidmvp.data.movie.source.local.MovieLocalDataSource;
+import com.aliesaassadi.androidmvp.data.movie.source.local.dao.MovieDao;
+import com.aliesaassadi.androidmvp.data.movie.source.local.database.MovieDatabase;
+import com.aliesaassadi.androidmvp.data.movie.source.remote.MovieRemoteDataSource;
+import com.aliesaassadi.androidmvp.data.movie.Movie;
+import com.aliesaassadi.androidmvp.data.movie.source.remote.services.MovieApi;
 import com.aliesaassadi.androidmvp.ui.activity.base.BaseActivity;
+import com.aliesaassadi.androidmvp.ui.activity.details.DetailsActivity;
 
 import java.util.List;
 
@@ -23,30 +30,43 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView, MovieAdapter.OnMovieAdapter {
 
-    MovieAdapter mMovieAdapter;
+    MovieAdapter movieAdapter;
 
-    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mMovieAdapter = new MovieAdapter(this);
-        mRecyclerView.setAdapter(mMovieAdapter);
+        movieAdapter = new MovieAdapter(this);
+        recyclerView.setAdapter(movieAdapter);
         presenter.getAllMovie();
     }
 
     @NonNull
     @Override
     protected MainPresenter createPresenter() {
-        return new MainPresenter(this, DataManager.getInstance().getMovieService());
+
+        MovieApi movieApi = DataManager.getInstance().getMovieApi();
+        MovieRemoteDataSource remoteDataSource = MovieRemoteDataSource.getInstance(movieApi);
+
+        MovieDao movieDao = MovieDatabase.getInstance().movieDao();
+        MovieLocalDataSource localDataSource = MovieLocalDataSource.getInstance(movieDao);
+
+        MovieCacheDataSource cacheDataSource = MovieCacheDataSource.getsInstance();
+
+        MoviesRepository movieRepository = DataManager.getInstance()
+                .getMovieRepository(remoteDataSource, localDataSource, cacheDataSource);
+
+        return new MainPresenter(this, movieRepository);
     }
 
 
     @Override
     public void showMovies(List<Movie> movies) {
-        mMovieAdapter.setItems(movies);
+        movieAdapter.setItems(movies);
     }
 
     @Override
