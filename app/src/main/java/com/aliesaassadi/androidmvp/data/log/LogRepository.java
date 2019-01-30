@@ -1,6 +1,6 @@
 package com.aliesaassadi.androidmvp.data.log;
 
-import com.aliesaassadi.androidmvp.data.log.db.entity.LogEntity;
+import com.aliesaassadi.androidmvp.data.log.local.entity.LogEntity;
 
 /**
  * Created by Ali Esa Assadi on 21/01/2019.

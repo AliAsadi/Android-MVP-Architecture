@@ -4,8 +4,8 @@ import com.aliesaassadi.androidmvp.data.log.LogDataSource;
 import com.aliesaassadi.androidmvp.data.log.LogRepository;
 import com.aliesaassadi.androidmvp.data.movie.MovieDataSource;
 import com.aliesaassadi.androidmvp.data.movie.MoviesRepository;
-import com.aliesaassadi.androidmvp.data.movie.network.services.MovieApi;
-import com.aliesaassadi.androidmvp.data.movie.network.services.MovieService;
+import com.aliesaassadi.androidmvp.data.movie.remote.services.MovieApi;
+import com.aliesaassadi.androidmvp.data.movie.remote.services.MovieService;
 import com.preference.PowerPreference;
 import com.preference.Preference;
 
