@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.aliesaassadi.androidmvp.R;
 import com.aliesaassadi.androidmvp.data.DataManager;
 import com.aliesaassadi.androidmvp.data.movie.source.MoviesRepository;
+import com.aliesaassadi.androidmvp.data.movie.source.local.MovieCacheDataSource;
 import com.aliesaassadi.androidmvp.data.movie.source.local.MovieLocalDataSource;
 import com.aliesaassadi.androidmvp.data.movie.source.local.dao.MovieDao;
 import com.aliesaassadi.androidmvp.data.movie.source.local.database.MovieDatabase;
@@ -54,8 +55,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
         MovieDao movieDao = MovieDatabase.getInstance().movieDao();
         MovieLocalDataSource localDataSource = MovieLocalDataSource.getInstance(movieDao);
 
+        MovieCacheDataSource cacheDataSource = MovieCacheDataSource.getsInstance();
+
         MoviesRepository movieRepository = DataManager.getInstance()
-                .getMovieRepository(remoteDataSource, localDataSource);
+                .getMovieRepository(remoteDataSource, localDataSource, cacheDataSource);
 
         return new MainPresenter(this, movieRepository);
     }

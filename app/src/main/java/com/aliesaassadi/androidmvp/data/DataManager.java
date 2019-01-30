@@ -4,6 +4,9 @@ import com.aliesaassadi.androidmvp.data.log.source.LogDataSource;
 import com.aliesaassadi.androidmvp.data.log.source.LogRepository;
 import com.aliesaassadi.androidmvp.data.movie.source.MovieDataSource;
 import com.aliesaassadi.androidmvp.data.movie.source.MoviesRepository;
+import com.aliesaassadi.androidmvp.data.movie.source.local.MovieCacheDataSource;
+import com.aliesaassadi.androidmvp.data.movie.source.local.MovieLocalDataSource;
+import com.aliesaassadi.androidmvp.data.movie.source.remote.MovieRemoteDataSource;
 import com.aliesaassadi.androidmvp.data.movie.source.remote.services.MovieApi;
 import com.aliesaassadi.androidmvp.data.movie.source.remote.services.MovieService;
 import com.preference.PowerPreference;
@@ -41,9 +44,10 @@ public class DataManager {
         return MovieService.getInstance().getMovieApi();
     }
 
-    public MoviesRepository getMovieRepository(MovieDataSource movieRemote,
-                                               MovieDataSource movieLocal) {
-        return MoviesRepository.getInstance(movieRemote,movieLocal);
+    public MoviesRepository getMovieRepository(MovieRemoteDataSource movieRemote,
+                                               MovieLocalDataSource movieLocal,
+                                               MovieCacheDataSource cacheDataSource) {
+        return MoviesRepository.getInstance(movieRemote,movieLocal,cacheDataSource);
     }
 
 }
