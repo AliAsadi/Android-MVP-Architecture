@@ -109,5 +109,7 @@ public class MoviesRepository implements MovieDataSource {
         movieCache.saveMovies(movies);
     }
 
-
+    public void destroyInstance() {
+        instance = null;
+    }
 }
