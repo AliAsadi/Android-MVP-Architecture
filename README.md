@@ -7,7 +7,7 @@
 
 # Project Structure
 
-![](https://i.imgur.com/1qBiYxt.png)
+![](https://i.imgur.com/1cJquIn.png)
 
 #### The app has following packages:
 1. **data**: It contains all the data accessing and manipulating components.
