@@ -59,10 +59,6 @@ public class MovieRepositoryTest {
         moviesRepository.destroyInstance();
     }
 
-    /**
-     * Cache
-     **/
-
     @Test
     public void getMovies_checkCacheDataSourceEveryRequest() {
         moviesRepository.getMovies(loadMoviesCallback);
@@ -117,10 +113,6 @@ public class MovieRepositoryTest {
         verify(movieCache).saveMovies(Mockito.<Movie>anyList());
     }
 
-    /**
-     * Local
-     **/
-
     @Test
     public void getMovies_requestDataFromLocalDataSource() {
 
@@ -132,9 +124,28 @@ public class MovieRepositoryTest {
         verify(loadMoviesCallback).onMoviesLoaded(MOVIES);
     }
 
-    /**
-     * Remote
-     **/
+    @Test
+    public void saveMovies_verifyThatMoviesSavedInLocalAfterFirstApiCall() {
+        moviesRepository.getMovies(loadMoviesCallback);
+
+        setMoviesNotAvailable(movieCache);
+        setMoviesNotAvailable(movieLocal);
+        setMoviesAvailable(movieRemote);
+
+        verify(movieLocal).saveMovies(Mockito.<Movie>anyList());
+    }
+
+    @Test
+    public void saveMovies_verifyThatMoviesSavedInDatabaseAndMemoryCacheAfterFirstApiCall() {
+        moviesRepository.getMovies(loadMoviesCallback);
+
+        setMoviesNotAvailable(movieCache);
+        setMoviesNotAvailable(movieLocal);
+        setMoviesAvailable(movieRemote);
+
+        verify(movieLocal).saveMovies(Mockito.<Movie>anyList());
+        verify(movieLocal).saveMovies(Mockito.<Movie>anyList());
+    }
 
     @Test
     public void getMovies_requestDataFromRemoteDataSource() {
@@ -144,8 +155,34 @@ public class MovieRepositoryTest {
         setMoviesNotAvailable(movieLocal);
         setMoviesAvailable(movieRemote);
 
-
         verify(loadMoviesCallback).onMoviesLoaded(MOVIES);
+    }
+
+    @Test
+    public void getMovies_requestDataFromRemoteDataSourceNotAvailable() {
+        moviesRepository.getMovies(loadMoviesCallback);
+
+        setMoviesNotAvailable(movieCache);
+        setMoviesNotAvailable(movieLocal);
+        setMoviesNotAvailable(movieRemote);
+
+        verify(loadMoviesCallback).onDataNotAvailable();
+    }
+
+    @Test
+    public void getMovies_requestDataFromRemoteDataSourceReturnError() {
+        moviesRepository.getMovies(loadMoviesCallback);
+
+        setMoviesNotAvailable(movieCache);
+        setMoviesNotAvailable(movieLocal);
+        setMoviesErrorResponse(movieRemote);
+
+        verify(loadMoviesCallback).onError();
+    }
+
+    private void setMoviesErrorResponse(MovieDataSource dataSource) {
+        verify(dataSource).getMovies(loadMoviesCallbackCapture.capture());
+        loadMoviesCallbackCapture.getValue().onError();
     }
 
     private void setMoviesNotAvailable(MovieDataSource dataSource) {
