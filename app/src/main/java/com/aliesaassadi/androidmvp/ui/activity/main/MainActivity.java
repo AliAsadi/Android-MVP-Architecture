@@ -1,6 +1,5 @@
 package com.aliesaassadi.androidmvp.ui.activity.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -81,9 +80,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
 
     @Override
     public void onMovieClicked(Movie movie) {
-        Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra("movie", movie);
-        startActivity(intent);
-
+        startActivity(DetailsActivity.newIntent(this, movie));
     }
 }
