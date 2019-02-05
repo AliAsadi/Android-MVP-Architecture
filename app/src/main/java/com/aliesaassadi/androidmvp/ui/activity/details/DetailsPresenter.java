@@ -15,20 +15,11 @@ public class DetailsPresenter extends BasePresenter<DetailsView> {
         super(view);
     }
 
-    public void getMovieData(Intent intent) {
-        if (intent == null || intent.getExtras() == null) {
-            view.showErrorMessage();
-            return;
-        }
-
-        Movie movie = intent.getExtras().getParcelable("movie");
-
+    public void onMovieReceived(Movie movie) {
         if (movie != null) {
-            view.showMovieDetails(movie.getImage(), movie.getTitle(), movie.getDescription());
+            view.showMovieDetails(movie);
         } else {
             view.showDataUnavailableMessage();
         }
-
-
     }
 }

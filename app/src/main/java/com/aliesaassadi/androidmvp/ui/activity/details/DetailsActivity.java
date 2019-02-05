@@ -1,5 +1,7 @@
 package com.aliesaassadi.androidmvp.ui.activity.details;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
@@ -7,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aliesaassadi.androidmvp.R;
+import com.aliesaassadi.androidmvp.data.movie.Movie;
 import com.aliesaassadi.androidmvp.ui.activity.base.BaseActivity;
 import com.squareup.picasso.Picasso;
 
@@ -18,16 +21,32 @@ import butterknife.ButterKnife;
  */
 public class DetailsActivity extends BaseActivity<DetailsPresenter> implements DetailsView {
 
-    @BindView(R.id.image) AppCompatImageView mImage;
-    @BindView(R.id.title) TextView mTitle;
-    @BindView(R.id.desc) TextView mDesc;
+    private static final String KEY_MOVIE = "movie";
+
+    @BindView(R.id.image)
+    AppCompatImageView mImage;
+    @BindView(R.id.title)
+    TextView mTitle;
+    @BindView(R.id.desc)
+    TextView mDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
-        presenter.getMovieData(getIntent());
+
+        presenter.onMovieReceived(getMovieFromBundle());
+    }
+
+    public static Intent newIntent(Activity activity, Movie movie) {
+        Intent intent = new Intent(activity, DetailsActivity.class);
+        intent.putExtra(KEY_MOVIE, movie);
+        return intent;
+    }
+
+    private Movie getMovieFromBundle() {
+        return getIntent().getParcelableExtra(KEY_MOVIE);
     }
 
     @NonNull
@@ -37,19 +56,14 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
     }
 
     @Override
-    public void showMovieDetails(String imageUrl, String title, String description) {
-        mTitle.setText(title);
-        mDesc.setText(description);
-        Picasso.get().load(imageUrl).into(mImage);
+    public void showMovieDetails(Movie movie) {
+        mTitle.setText(movie.getTitle());
+        mDesc.setText(movie.getDescription());
+        Picasso.get().load(movie.getImage()).into(mImage);
     }
 
     @Override
     public void showDataUnavailableMessage() {
         Toast.makeText(this, "Data Unavailable", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showErrorMessage() {
-        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
     }
 }
