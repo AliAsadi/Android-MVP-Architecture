@@ -37,13 +37,6 @@ public class Movie implements Parcelable{
 
     public Movie() {}
 
-    @Ignore
-    public Movie(String description, String image, String title) {
-        this.description = description;
-        this.image = image;
-        this.title = title;
-    }
-
     public int getId() {
         return id;
     }
