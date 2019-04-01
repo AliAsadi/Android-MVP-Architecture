@@ -9,6 +9,12 @@
 
 ![](https://i.imgur.com/lNMQMdx.png)
 
+# Screenshot
+<p align="center">
+<img src="https://i.imgur.com/H80cPPH.jpg" height="600" width="300">
+<img src="https://i.imgur.com/6FWyxTf.png" height="600" width="300">
+</p>
+
 #### The app has following packages:
 1. **data**: It contains all the data accessing and manipulating components.
 2. **ui**: View classes along with their corresponding Presenters.
