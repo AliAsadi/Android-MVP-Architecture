@@ -1,8 +1,5 @@
 package com.aliesaassadi.androidmvp.data;
 
-import com.aliesaassadi.androidmvp.data.log.source.LogDataSource;
-import com.aliesaassadi.androidmvp.data.log.source.LogRepository;
-import com.aliesaassadi.androidmvp.data.movie.source.MovieDataSource;
 import com.aliesaassadi.androidmvp.data.movie.source.MoviesRepository;
 import com.aliesaassadi.androidmvp.data.movie.source.local.MovieCacheDataSource;
 import com.aliesaassadi.androidmvp.data.movie.source.local.MovieLocalDataSource;
@@ -37,9 +34,6 @@ public class DataManager {
 
     public Preference getUserPreference() { return PowerPreference.getFileByName("UserPreference"); }
 
-    public LogRepository getLogRepository(LogDataSource logLocalDataSource) {
-        return LogRepository.getInstance(logLocalDataSource);
-    }
     public MovieApi getMovieApi() {
         return MovieService.getInstance().getMovieApi();
     }
