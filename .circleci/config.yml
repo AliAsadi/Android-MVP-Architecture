@@ -1,0 +1,121 @@
+################################
+#### Default Configuration #####
+################################
+defaults: &defaults
+  working_directory: ~/code
+  docker:
+    - image: circleci/android:api-25-alpha
+  environment:
+    JVM_OPTS: -Xmx3200m
+
+###############
+#### Jobs #####
+###############
+version: 2
+jobs:
+  # Get android code from Github
+  checkout:
+    <<: *defaults
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  # Download all Dependencies
+  download_dependencies:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Approve license for build tools
+          command: (echo y; echo y; echo y; echo y; echo y; echo y) | /opt/android/sdk/tools/bin/sdkmanager --licenses
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  # Run Tests
+  tests:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Approve license for build tools
+          command: (echo y; echo y; echo y; echo y; echo y; echo y) | /opt/android/sdk/tools/bin/sdkmanager --licenses
+      - run:
+          name: Tests
+          command: ./gradlew test
+      - persist_to_workspace:
+          root: .
+          paths: app/build
+
+  # Build release version
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Approve license for build tools
+          command: (echo y; echo y; echo y; echo y; echo y; echo y) | /opt/android/sdk/tools/bin/sdkmanager --licenses
+      - run:
+          name: Build Release Apk
+          command: ./gradlew assembleRelease
+      - persist_to_workspace:
+          root: .
+          paths: app/build
+
+  # Upload release version to artifacts
+  upload:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+
+      # store build files
+      - store_artifacts:
+          name: Uploading Apk
+          path: app/build/outputs/apk/
+          destination: apks/
+
+      # store reports files
+      - store_artifacts:
+          name: Uploading Reports
+          path: app/build/reports
+          destination: reports
+
+###############
+### Workflow ##
+###############
+workflows:
+  version: 2
+  main:
+    jobs:
+      - checkout
+      - download_dependencies:
+          requires:
+            - checkout
+      - tests:
+          requires:
+            - download_dependencies
+      - build:
+          requires:
+            - tests
+      - upload:
+          requires:
+            - build
