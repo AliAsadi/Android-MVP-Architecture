@@ -1,9 +1,9 @@
-package com.aliasadi.androidmvp.ui.activity.main;
+package com.aliasadi.androidmvp.ui.main;
 
 import com.aliasadi.androidmvp.data.movie.source.MovieDataSource;
 import com.aliasadi.androidmvp.data.movie.source.MoviesRepository;
 import com.aliasadi.androidmvp.data.movie.Movie;
-import com.aliasadi.androidmvp.ui.activity.base.BasePresenter;
+import com.aliasadi.androidmvp.ui.base.BasePresenter;
 
 import java.lang.ref.WeakReference;
 import java.util.List;

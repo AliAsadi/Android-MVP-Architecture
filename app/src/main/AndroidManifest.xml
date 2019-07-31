@@ -15,14 +15,14 @@
         android:name="com.aliasadi.androidmvp.App"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.aliasadi.androidmvp.ui.activity.main.MainActivity">
+        <activity android:name="com.aliasadi.androidmvp.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name="com.aliasadi.androidmvp.ui.activity.details.DetailsActivity" />
+        <activity android:name="com.aliasadi.androidmvp.ui.details.DetailsActivity" />
 
     </application>
 

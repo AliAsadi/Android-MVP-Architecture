@@ -1,4 +1,4 @@
-package com.aliasadi.androidmvp.ui.activity.main;
+package com.aliasadi.androidmvp.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,8 +15,8 @@ import com.aliasadi.androidmvp.data.movie.source.local.database.MovieDatabase;
 import com.aliasadi.androidmvp.data.movie.source.remote.MovieRemoteDataSource;
 import com.aliasadi.androidmvp.data.movie.Movie;
 import com.aliasadi.androidmvp.data.movie.source.remote.services.MovieApi;
-import com.aliasadi.androidmvp.ui.activity.base.BaseActivity;
-import com.aliasadi.androidmvp.ui.activity.details.DetailsActivity;
+import com.aliasadi.androidmvp.ui.base.BaseActivity;
+import com.aliasadi.androidmvp.ui.details.DetailsActivity;
 
 import java.util.List;
 

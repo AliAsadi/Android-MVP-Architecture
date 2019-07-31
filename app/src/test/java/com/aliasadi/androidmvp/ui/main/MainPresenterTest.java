@@ -1,4 +1,4 @@
-package com.aliasadi.androidmvp.ui.activity.main;
+package com.aliasadi.androidmvp.ui.main;
 
 import com.aliasadi.androidmvp.data.movie.source.MovieDataSource;
 import com.aliasadi.androidmvp.data.movie.source.MoviesRepository;

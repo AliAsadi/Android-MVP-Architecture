@@ -1,4 +1,4 @@
-package com.aliasadi.androidmvp.ui.activity.base;
+package com.aliasadi.androidmvp.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

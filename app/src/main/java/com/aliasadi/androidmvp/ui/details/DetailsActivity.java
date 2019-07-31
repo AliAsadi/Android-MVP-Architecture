@@ -1,4 +1,4 @@
-package com.aliasadi.androidmvp.ui.activity.details;
+package com.aliasadi.androidmvp.ui.details;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.aliasadi.androidmvp.R;
 import com.aliasadi.androidmvp.data.movie.Movie;
-import com.aliasadi.androidmvp.ui.activity.base.BaseActivity;
+import com.aliasadi.androidmvp.ui.base.BaseActivity;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;

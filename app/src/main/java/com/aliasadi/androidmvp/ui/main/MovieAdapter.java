@@ -1,4 +1,4 @@
-package com.aliasadi.androidmvp.ui.activity.main;
+package com.aliasadi.androidmvp.ui.main;
 
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;

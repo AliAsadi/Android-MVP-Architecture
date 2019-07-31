@@ -1,7 +1,7 @@
-package com.aliasadi.androidmvp.ui.activity.main;
+package com.aliasadi.androidmvp.ui.main;
 
 import com.aliasadi.androidmvp.data.movie.Movie;
-import com.aliasadi.androidmvp.ui.activity.base.BaseView;
+import com.aliasadi.androidmvp.ui.base.BaseView;
 
 import java.util.List;
 
