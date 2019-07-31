@@ -3,6 +3,7 @@ package com.aliasadi.androidmvp.data.movie.source.local;
 import com.aliasadi.androidmvp.data.movie.Movie;
 import com.aliasadi.androidmvp.data.movie.source.MovieDataSource;
 import com.aliasadi.androidmvp.data.movie.source.local.dao.MovieDao;
+import com.aliasadi.androidmvp.utils.DiskExecutor;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -25,7 +26,7 @@ public class MovieLocalDataSource implements MovieDataSource {
 
     public static MovieLocalDataSource getInstance(MovieDao movieDao) {
         if (instance == null) {
-            instance = new MovieLocalDataSource(Executors.newSingleThreadExecutor(), movieDao);
+            instance = new MovieLocalDataSource(new DiskExecutor(), movieDao);
         }
         return instance;
     }
