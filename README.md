@@ -2,12 +2,12 @@
 [![CircleCI](https://circleci.com/gh/AliAsadi/Android-MVP-Architecture.svg?style=svg)](https://circleci.com/gh/AliAsadi/Android-MVP-Architecture)
 ### A basic sample android application to understand MVP in a very simple way. Just clone, build, run and understand MVP.
 
-![](https://i.imgur.com/VLyoGuk.png)
+![](https://github.com/AliAsadi/Android-MVP-Architecture/blob/master/screenshot/architecture.png?raw=true)
 
 
 # Project Structure
 
-![](https://i.imgur.com/lNMQMdx.png)
+![](https://github.com/AliAsadi/Android-MVP-Architecture/blob/master/screenshot/structure.png?raw=true)
 
 # Screenshot
 <p align="center">
