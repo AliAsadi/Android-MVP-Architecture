@@ -22,8 +22,7 @@
 
 #### Key points
 * Using base abstract classes to support MVP methodology while
-  avoiding Activity leaks by releasing the view when it's no longer needed 
-  ,BasePresenter repsonsable to destroy the view onDestroy().
+  avoiding Activity leaks by releasing the view when it's no longer needed, BasePresenter reasonable to destroy the view onDestroy().
   
 #### Used libraries:
 1. [RoomDatabase](https://developer.android.com/topic/libraries/architecture/room)
