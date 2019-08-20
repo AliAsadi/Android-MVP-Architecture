@@ -8,13 +8,7 @@ import android.widget.Toast;
 import com.aliasadi.androidmvp.R;
 import com.aliasadi.androidmvp.data.DataManager;
 import com.aliasadi.androidmvp.data.movie.source.MoviesRepository;
-import com.aliasadi.androidmvp.data.movie.source.local.MovieCacheDataSource;
-import com.aliasadi.androidmvp.data.movie.source.local.MovieLocalDataSource;
-import com.aliasadi.androidmvp.data.movie.source.local.dao.MovieDao;
-import com.aliasadi.androidmvp.data.movie.source.local.database.MovieDatabase;
-import com.aliasadi.androidmvp.data.movie.source.remote.MovieRemoteDataSource;
 import com.aliasadi.androidmvp.data.movie.Movie;
-import com.aliasadi.androidmvp.data.movie.source.remote.services.MovieApi;
 import com.aliasadi.androidmvp.ui.base.BaseActivity;
 import com.aliasadi.androidmvp.ui.details.DetailsActivity;
 
@@ -47,18 +41,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     @NonNull
     @Override
     protected MainPresenter createPresenter() {
-
-        MovieApi movieApi = DataManager.getInstance().getMovieApi();
-        MovieRemoteDataSource remoteDataSource = MovieRemoteDataSource.getInstance(movieApi);
-
-        MovieDao movieDao = MovieDatabase.getInstance().movieDao();
-        MovieLocalDataSource localDataSource = MovieLocalDataSource.getInstance(movieDao);
-
-        MovieCacheDataSource cacheDataSource = MovieCacheDataSource.getsInstance();
-
-        MoviesRepository movieRepository = DataManager.getInstance()
-                .getMovieRepository(remoteDataSource, localDataSource, cacheDataSource);
-
+        MoviesRepository movieRepository = DataManager.getInstance().getMovieRepository();
         return new MainPresenter(this, movieRepository);
     }
 

@@ -3,6 +3,8 @@ package com.aliasadi.androidmvp.data;
 import com.aliasadi.androidmvp.data.movie.source.MoviesRepository;
 import com.aliasadi.androidmvp.data.movie.source.local.MovieCacheDataSource;
 import com.aliasadi.androidmvp.data.movie.source.local.MovieLocalDataSource;
+import com.aliasadi.androidmvp.data.movie.source.local.dao.MovieDao;
+import com.aliasadi.androidmvp.data.movie.source.local.database.MovieDatabase;
 import com.aliasadi.androidmvp.data.movie.source.remote.MovieRemoteDataSource;
 import com.aliasadi.androidmvp.data.movie.source.remote.services.MovieApi;
 import com.aliasadi.androidmvp.data.movie.source.remote.services.MovieService;
@@ -33,13 +35,16 @@ public class DataManager {
 
     public Preference getUserPreference() { return PowerPreference.getFileByName("UserPreference"); }
 
-    public MovieApi getMovieApi() {
-        return MovieService.getInstance().getMovieApi();
-    }
+    public MoviesRepository getMovieRepository() {
 
-    public MoviesRepository getMovieRepository(MovieRemoteDataSource movieRemote,
-                                               MovieLocalDataSource movieLocal,
-                                               MovieCacheDataSource movieCache) {
+        MovieApi movieApi = MovieService.getInstance().getMovieApi();
+        MovieRemoteDataSource movieRemote = MovieRemoteDataSource.getInstance(movieApi);
+
+        MovieDao movieDao = MovieDatabase.getInstance().movieDao();
+        MovieLocalDataSource movieLocal = MovieLocalDataSource.getInstance(movieDao);
+
+        MovieCacheDataSource movieCache = MovieCacheDataSource.getsInstance();
+
         return MoviesRepository.getInstance(movieRemote,movieLocal,movieCache);
     }
 
