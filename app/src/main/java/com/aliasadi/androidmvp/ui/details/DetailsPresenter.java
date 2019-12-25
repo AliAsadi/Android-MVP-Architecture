@@ -11,11 +11,11 @@ import com.aliasadi.androidmvp.ui.base.BasePresenter;
  */
 public class DetailsPresenter extends BasePresenter<DetailsView> {
 
-    public static final String KEY_MOVIE = "movie";
+    static final String KEY_MOVIE = "movie";
 
     private final Intent intent;
 
-    public DetailsPresenter(DetailsView view, Intent intent) {
+    DetailsPresenter(DetailsView view, Intent intent) {
         super(view);
         this.intent = intent;
     }
