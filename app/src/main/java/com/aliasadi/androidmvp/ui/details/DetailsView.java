@@ -8,7 +8,7 @@ import com.aliasadi.androidmvp.ui.base.BaseView;
  */
 public interface DetailsView extends BaseView {
 
-    void showMovieDetails(Movie movie);
+    void showMovieData(Movie movie);
 
     void showDataUnavailableMessage();
 
