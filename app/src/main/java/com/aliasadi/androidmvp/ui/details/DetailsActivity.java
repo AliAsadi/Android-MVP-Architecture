@@ -16,12 +16,12 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.aliasadi.androidmvp.ui.details.DetailsPresenter.KEY_MOVIE;
+
 /**
  * Created by Ali Asadi on 12/03/2018.
  */
 public class DetailsActivity extends BaseActivity<DetailsPresenter> implements DetailsView {
-
-    private static final String KEY_MOVIE = "movie";
 
     @BindView(R.id.image)
     AppCompatImageView mImage;
@@ -36,7 +36,7 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
 
-        presenter.onMovieReceived(getMovieFromBundle());
+        presenter.onCreateView();
     }
 
     public static Intent newIntent(Activity activity, Movie movie) {
@@ -45,18 +45,14 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
         return intent;
     }
 
-    private Movie getMovieFromBundle() {
-        return getIntent().getParcelableExtra(KEY_MOVIE);
-    }
-
     @NonNull
     @Override
     protected DetailsPresenter createPresenter() {
-        return new DetailsPresenter(this);
+        return new DetailsPresenter(this, getIntent());
     }
 
     @Override
-    public void showMovieDetails(Movie movie) {
+    public void showMovieData(Movie movie) {
         mTitle.setText(movie.getTitle());
         mDesc.setText(movie.getDescription());
         Picasso.get().load(movie.getImage()).into(mImage);
