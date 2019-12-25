@@ -20,10 +20,14 @@ public class MainPresenter extends BasePresenter<MainView> {
         this.movieRepository = movieRepository;
     }
 
+    public void onCreateView() {
+        getAllMovies();
+    }
+
     /**
      * Network
      **/
-    public void getAllMovie() {
+    private void getAllMovies() {
         movieRepository.getMovies(new MovieCallListener(view));
     }
 
