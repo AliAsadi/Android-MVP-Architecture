@@ -24,12 +24,9 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
 
     private static final String EXTRA_MOVIE = "EXTRA_MOVIE";
 
-    @BindView(R.id.image)
-    AppCompatImageView mImage;
-    @BindView(R.id.title)
-    TextView mTitle;
-    @BindView(R.id.desc)
-    TextView mDesc;
+    @BindView(R.id.image) AppCompatImageView image;
+    @BindView(R.id.title) TextView title;
+    @BindView(R.id.desc) TextView desc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +52,9 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
 
     @Override
     public void showMovieData(Movie movie) {
-        mTitle.setText(movie.getTitle());
-        mDesc.setText(movie.getDescription());
-        Picasso.get().load(movie.getImage()).into(mImage);
+        title.setText(movie.getTitle());
+        desc.setText(movie.getDescription());
+        Picasso.get().load(movie.getImage()).into(image);
     }
 
     @Override

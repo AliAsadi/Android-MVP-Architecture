@@ -23,10 +23,9 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView, MovieAdapter.OnMovieAdapter {
 
-    MovieAdapter movieAdapter;
+    private MovieAdapter movieAdapter;
 
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
+    @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

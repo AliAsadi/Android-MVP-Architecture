@@ -24,16 +24,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         void onMovieClicked(Movie movie);
     }
 
-    private List<Movie> mItems;
-    private OnMovieAdapter mListener;
+    private List<Movie> items;
+    private OnMovieAdapter listener;
 
     public MovieAdapter(OnMovieAdapter listener) {
-        mListener = listener;
-        mItems = new ArrayList<>();
+        this.listener = listener;
+        items = new ArrayList<>();
     }
 
     public void setItems(List<Movie> items) {
-        mItems = items;
+        this.items = items;
         notifyDataSetChanged();
     }
 
@@ -55,11 +55,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return items.size();
     }
 
     private Movie getItem(int position) {
-        return mItems.get(position);
+        return items.get(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -92,7 +92,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         @Override
         public void onClick(View view) {
-            mListener.onMovieClicked((Movie) view.getTag());
+            listener.onMovieClicked((Movie) view.getTag());
         }
     }
 }
