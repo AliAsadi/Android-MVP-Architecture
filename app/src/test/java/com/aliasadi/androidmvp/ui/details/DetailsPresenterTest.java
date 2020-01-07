@@ -24,27 +24,18 @@ public class DetailsPresenterTest {
     @Mock
     private DetailsView view;
 
-    @Mock
-    private Intent intent;
-
     private DetailsPresenter presenter;
-
-    @Before
-    public void setUp() {
-        presenter = new DetailsPresenter(view, intent);
-    }
-
 
     @Test
     public void showDataUnavailableMessage_WhenMovieDataNotExist() {
-        when(intent.getParcelableExtra(DetailsPresenter.KEY_MOVIE)).thenReturn(null);
+        presenter = new DetailsPresenter(view, null);
         presenter.onCreateView();
         verify(view).showDataUnavailableMessage();
     }
 
     @Test
     public void showMovieDetails_WhenGetMoveDataSuccess() {
-        when(intent.getParcelableExtra(DetailsPresenter.KEY_MOVIE)).thenReturn(new Movie());
+        presenter = new DetailsPresenter(view, new Movie());
         presenter.onCreateView();
         verify(view, Mockito.only()).showMovieData((Movie) any());
     }

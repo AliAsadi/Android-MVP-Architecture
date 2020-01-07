@@ -1,7 +1,5 @@
 package com.aliasadi.androidmvp.ui.details;
 
-import android.content.Intent;
-
 import com.aliasadi.androidmvp.data.movie.Movie;
 import com.aliasadi.androidmvp.ui.base.BasePresenter;
 
@@ -11,13 +9,11 @@ import com.aliasadi.androidmvp.ui.base.BasePresenter;
  */
 public class DetailsPresenter extends BasePresenter<DetailsView> {
 
-    static final String KEY_MOVIE = "movie";
+    private final Movie movie;
 
-    private final Intent intent;
-
-    DetailsPresenter(DetailsView view, Intent intent) {
+    DetailsPresenter(DetailsView view, Movie movie) {
         super(view);
-        this.intent = intent;
+        this.movie = movie;
     }
 
     public void onCreateView() {
@@ -25,16 +21,10 @@ public class DetailsPresenter extends BasePresenter<DetailsView> {
     }
 
     private void showMovieData() {
-        Movie movie = getMovieFromBundle();
         if (movie != null) {
             view.showMovieData(movie);
         } else {
             view.showDataUnavailableMessage();
         }
     }
-
-    private Movie getMovieFromBundle() {
-        return intent.getParcelableExtra(KEY_MOVIE);
-    }
-
 }

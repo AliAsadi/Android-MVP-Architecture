@@ -16,12 +16,13 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.aliasadi.androidmvp.ui.details.DetailsPresenter.KEY_MOVIE;
 
 /**
  * Created by Ali Asadi on 12/03/2018.
  */
 public class DetailsActivity extends BaseActivity<DetailsPresenter> implements DetailsView {
+
+    private static final String EXTRA_MOVIE = "EXTRA_MOVIE";
 
     @BindView(R.id.image)
     AppCompatImageView mImage;
@@ -41,14 +42,15 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
 
     public static Intent newIntent(Activity activity, Movie movie) {
         Intent intent = new Intent(activity, DetailsActivity.class);
-        intent.putExtra(KEY_MOVIE, movie);
+        intent.putExtra(EXTRA_MOVIE, movie);
         return intent;
     }
 
     @NonNull
     @Override
     protected DetailsPresenter createPresenter() {
-        return new DetailsPresenter(this, getIntent());
+        Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        return new DetailsPresenter(this, movie);
     }
 
     @Override
