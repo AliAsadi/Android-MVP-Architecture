@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
         ButterKnife.bind(this);
         movieAdapter = new MovieAdapter(this);
         recyclerView.setAdapter(movieAdapter);
-        presenter.onCreateView();
+        presenter.onAttach();
     }
 
     @NonNull

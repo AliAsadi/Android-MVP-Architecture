@@ -20,7 +20,7 @@ public class MainPresenter extends BasePresenter<MainView> {
         this.movieRepository = movieRepository;
     }
 
-    public void onCreateView() {
+    public void onAttach() {
         getAllMovies();
     }
 

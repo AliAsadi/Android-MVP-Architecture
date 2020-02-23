@@ -16,7 +16,7 @@ public class DetailsPresenter extends BasePresenter<DetailsView> {
         this.movie = movie;
     }
 
-    public void onCreateView() {
+    public void onAttach() {
         showMovieData();
     }
 

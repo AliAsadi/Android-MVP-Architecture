@@ -40,7 +40,7 @@ public class MainPresenterTest {
     @Test
     public void showMovies_WhenGetMoviesCallSuccess() {
 
-        presenter.onCreateView();
+        presenter.onAttach();
 
         List<Movie> movies = Arrays.asList(new Movie(), new Movie());
 
@@ -53,7 +53,7 @@ public class MainPresenterTest {
     @Test
     public void showNoMovies_WhenGetMoviesCallSuccessAndMovieListIsEmpty() {
 
-        presenter.onCreateView();
+        presenter.onAttach();
 
         Mockito.verify(moviesRepository).getMovies(loadMoviesCallback.capture());
         loadMoviesCallback.getValue().onDataNotAvailable();
@@ -63,7 +63,7 @@ public class MainPresenterTest {
 
     @Test
     public void showErrorMessage_WhenGetMoviesCallFailed() {
-        presenter.onCreateView();
+        presenter.onAttach();
 
         Mockito.verify(moviesRepository).getMovies(loadMoviesCallback.capture());
         loadMoviesCallback.getValue().onError();

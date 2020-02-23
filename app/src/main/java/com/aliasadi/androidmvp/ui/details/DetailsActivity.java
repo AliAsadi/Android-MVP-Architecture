@@ -34,7 +34,7 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
 
-        presenter.onCreateView();
+        presenter.onAttach();
     }
 
     public static Intent newIntent(Activity activity, Movie movie) {
