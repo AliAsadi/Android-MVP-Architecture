@@ -20,14 +20,14 @@ import butterknife.ButterKnife;
  */
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
-    public interface OnMovieAdapter{
+    public interface MovieListener {
         void onMovieClicked(Movie movie);
     }
 
     private List<Movie> items;
-    private OnMovieAdapter listener;
+    private MovieListener listener;
 
-    public MovieAdapter(OnMovieAdapter listener) {
+    public MovieAdapter(MovieListener listener) {
         this.listener = listener;
         items = new ArrayList<>();
     }

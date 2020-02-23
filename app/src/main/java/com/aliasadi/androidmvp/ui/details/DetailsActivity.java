@@ -1,6 +1,6 @@
 package com.aliasadi.androidmvp.ui.details;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -37,19 +37,6 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
         presenter.onAttach();
     }
 
-    public static Intent newIntent(Activity activity, Movie movie) {
-        Intent intent = new Intent(activity, DetailsActivity.class);
-        intent.putExtra(EXTRA_MOVIE, movie);
-        return intent;
-    }
-
-    @NonNull
-    @Override
-    protected DetailsPresenter createPresenter() {
-        Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
-        return new DetailsPresenter(this, movie);
-    }
-
     @Override
     public void showMovieData(Movie movie) {
         title.setText(movie.getTitle());
@@ -60,5 +47,18 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter> implements D
     @Override
     public void showDataUnavailableMessage() {
         Toast.makeText(this, "Data Unavailable", Toast.LENGTH_SHORT).show();
+    }
+
+    @NonNull
+    @Override
+    protected DetailsPresenter createPresenter() {
+        Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
+        return new DetailsPresenter(this, movie);
+    }
+
+    public static void start(Context context,Movie movie) {
+        Intent intent = new Intent(context, DetailsActivity.class);
+        intent.putExtra(EXTRA_MOVIE, movie);
+        context.startActivity(intent);
     }
 }

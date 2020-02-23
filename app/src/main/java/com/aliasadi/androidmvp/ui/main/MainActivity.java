@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  * Created by Ali Asadi on 12/03/2018.
  */
 
-public class MainActivity extends BaseActivity<MainPresenter> implements MainView, MovieAdapter.OnMovieAdapter {
+public class MainActivity extends BaseActivity<MainPresenter> implements MainView, MovieAdapter.MovieListener {
 
     private MovieAdapter movieAdapter;
 
@@ -62,6 +62,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
 
     @Override
     public void onMovieClicked(Movie movie) {
-        startActivity(DetailsActivity.newIntent(this, movie));
+        DetailsActivity.start(this, movie);
     }
 }
