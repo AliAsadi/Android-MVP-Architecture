@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class MovieService {
 
-    private static final String URL = "https://demo6483760.mockable.io/";
+    private static final String URL = "https://demo2458961.mockable.io/";
 
     private MovieApi mMovieApi;
 
