@@ -37,7 +37,7 @@
 
 **Feel free to submit any type of issues and suggestions for improving the coding standard**
 
-**Happy Coding!!!** ![](https://i.imgur.com/rneCZCN.png)
+**Happy Coding!!** ![](https://i.imgur.com/rneCZCN.png)
 
 --------------------------------------------------------------------------------------------
 
