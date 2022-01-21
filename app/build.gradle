@@ -26,7 +26,7 @@ ext {
     gsonVersion = '2.8.2'
     picassoVersion = '2.71828'
     retrofitVersion = '2.3.0'
-    powerPreferenceVersion = '1.4.1'
+    powerPreferenceVersion = '2.1.0'
     butterKnifeVersion = '8.8.1'
     roomVersion = '1.1.1'
 
@@ -52,7 +52,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
     //PowerPreference
-    implementation "com.aliassadi:power-preference-lib:$powerPreferenceVersion"
+    implementation "com.github.AliAsadi:PowerPreference:$powerPreferenceVersion"
 
     //ButterKnife
     implementation "com.jakewharton:butterknife:$butterKnifeVersion"
